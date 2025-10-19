@@ -4,7 +4,7 @@ import { WebcastPushConnection } from 'tiktok-live-connector';
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Serve HTML page
+// Serve dashboard page
 app.get('/', (req, res) => {
   res.send(`
     <html>
@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 
           const tiktok = new WebcastPushConnection('mrliveboii');
 
-          tiktok.connect().then(() => console.log("Connected!")).catch(e => console.error(e));
+          tiktok.connect().then(() => console.log("✅ Connected!")).catch(e => console.error(e));
 
           tiktok.on('like', data => {
             totalLikes += data.likeCount;
@@ -55,15 +55,11 @@ app.get('/', (req, res) => {
           });
 
           tiktok.on('gift', data => {
-            // Display the gift with username, gift name, and coin value
             const giftDiv = document.createElement('div');
             giftDiv.innerText = data.uniqueId + " sent " + data.giftName + " (" + data.diamondCount + " coins)";
             giftsListEl.prepend(giftDiv);
-
-            // Keep only the last 10 gifts
             if (giftsListEl.children.length > 10) giftsListEl.removeChild(giftsListEl.lastChild);
 
-            // Update top gifters
             gifterMap[data.uniqueId] = (gifterMap[data.uniqueId] || 0) + data.diamondCount;
             const sorted = Object.entries(gifterMap).sort((a,b)=>b[1]-a[1]);
             topGiftersEl.innerText = sorted.map(e => e[0] + " x" + e[1]).slice(0,5).join("\\n");
