@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
   res.send(`
     <html>
       <head>
-        <title>mrliveboii TikTok Live Dashboard</title>
+        <title>akaabrodie TikTok Live Dashboard</title>
         <style>
           body { background:#0e0e0e; color:white; font-family:sans-serif; margin:0; padding:0;}
           h1 { text-align:center; padding:10px 0; }
@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
         </style>
       </head>
       <body>
-        <h1>mrliveboii TikTok Live Dashboard</h1>
+        <h1>akaabrodie TikTok Live Dashboard</h1>
         <div class="container">
           <div class="box"><span class="label">❤️ Likes</span><div id="likes">0</div></div>
           <div class="box"><span class="label">👀 Viewers</span><div id="viewers">0</div></div>
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
           let followersCount = 0;
           let gifterMap = {};
 
-          const tiktok = new WebcastPushConnection('mrliveboii');
+          const tiktok = new WebcastPushConnection('akaabrodie');
 
           tiktok.connect().then(() => console.log("✅ Connected!")).catch(e => console.error(e));
 
